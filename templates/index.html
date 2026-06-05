@@ -3,44 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }}</title>
+    <title>Mateo Espin en Python con Flask</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            height: 100vh;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #5d72e9, #7b4fc4);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: #263238;
         }
 
-        .contenedor {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        .card {
+            width: 75%;
+            max-width: 950px;
+            background-color: #ffffff;
+            border-radius: 28px;
+            padding: 55px 65px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .titulo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 4px solid #7b4fc4;
+            padding-bottom: 12px;
+            margin-bottom: 45px;
         }
 
         h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            margin: 0;
+            font-size: 42px;
+            color: #263238;
         }
 
-        p {
+        .badge {
+            background-color: #111;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .info {
+            background-color: #f8f9fc;
+            border-left: 6px solid #7b4fc4;
+            padding: 25px 30px;
+            border-radius: 18px;
+            margin-bottom: 35px;
+        }
+
+        .info p {
             font-size: 20px;
+            margin: 18px 0;
+            color: #555;
+        }
+
+        .puerto {
+            background-color: #263238;
+            color: #64ffda;
+            padding: 6px 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 20px;
+        }
+
+        .mensaje {
+            text-align: center;
+            font-size: 21px;
+            color: #555;
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            color: #aaa;
+            margin-top: 40px;
+            font-size: 15px;
+        }
+
+        strong {
+            color: #263238;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 90%;
+                padding: 35px 25px;
+            }
+
+            .titulo {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .info p {
+                font-size: 17px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="contenedor">
-        <h1>{{ titulo }}</h1>
-        <p>Página web creada con Python y Flask Sheff Mateo Espin Parra 2</p>
+    <div class="card">
+
+        <div class="titulo">
+            <h1>Mateo Espin en Python con Flask</h1>
+            <span class="badge">Flask + Python</span>
+        </div>
+
+        <div class="info">
+            <p>✅ Servidor web desarrollado con <strong>Flask</strong>.</p>
+            <p>🌐 Puerto de escucha: <span class="puerto">5000</span></p>
+            <p>👨‍💻 Proyecto creado por <strong>Mateo Espin</strong>.</p>
+            <p>🚀 Esta página se sirve dinámicamente desde el backend Flask.</p>
+        </div>
+
+        <p class="mensaje">
+            ⚡ HTML + CSS básico, con diseño responsivo y estilo moderno.
+        </p>
+
+        <footer>
+            Mateo Espin • Python con Flask • Puerto 5000
+        </footer>
+
     </div>
 
 </body>
