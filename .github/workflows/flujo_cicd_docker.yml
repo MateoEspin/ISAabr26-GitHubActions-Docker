@@ -38,6 +38,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker image pull veronica17122081/isa-abr26-cicd-docker:flaskapp
-            docker container stop contflaskpablo || true
-            docker container rm contflaskpablo || true
-            docker container run -d --name contflaskpablo -p 80:5000 veronica17122081/isa-abr26-cicd-docker:flaskapp
+            docker container stop contflaskmateo || true
+            docker container rm contflaskmateo || true
+            docker container run -d --name contflaskmateo -p 80:5000 veronica17122081/isa-abr26-cicd-docker:flaskapp
