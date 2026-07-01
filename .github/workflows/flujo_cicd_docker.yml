@@ -4,12 +4,11 @@ on:
   push:
     branches: [ "main" ]
 
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Construir imagen de Docker y subir al repositorio
+    name: Construir imagen de Docker y desplegar en EC2
     runs-on: ubuntu-latest
 
     steps:
@@ -27,17 +26,26 @@ jobs:
         with:
           context: .
           push: true
-          tags: veronica17122081/isa-abr26-cicd-docker:flaskapp
+          tags: ${{ secrets.DOCKER_USERNAME }}/isa-abr26-cicd-docker:flaskapp
 
-      - name: Deployment
-        uses: appleboy/ssh-action@v0.1.8
+      - name: Deployment EC2
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
           script: |
-            docker image pull veronica17122081/isa-abr26-cicd-docker:flaskapp
-            docker container stop contflaskmateo || true
-            docker container rm contflaskmateo || true
-            docker container run -d --name contflaskmateo -p 80:5000 veronica17122081/isa-abr26-cicd-docker:flaskapp
+            sudo systemctl stop httpd || true
+
+            sudo docker image pull ${{ secrets.DOCKER_USERNAME }}/isa-abr26-cicd-docker:flaskapp
+
+            sudo docker container stop contflaskmateo || true
+            sudo docker container rm contflaskmateo || true
+
+            sudo docker container stop app-isa || true
+            sudo docker container rm app-isa || true
+
+            sudo docker container run -d --name contflaskmateo -p 80:5000 ${{ secrets.DOCKER_USERNAME }}/isa-abr26-cicd-docker:flaskapp
+
+            sudo docker ps
